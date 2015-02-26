@@ -204,8 +204,29 @@ func average(numbers: Int...) -> Int {
 }
 average(42,597,12)
 
+//functions can be nested. Nested functions have access to variables that were declared in the outer function. 
 
+func returnFifteen() -> Int {
+  var y = 10
+  func add() {
+    y += 5
+  }
+  add()
+  return y
+}
+returnFifteen()
 
+//functions are a first-class type. This means that a function can return another function as its value
+
+func makeIncrementer() -> (Int -> Int) {
+  func addOne(number: Int) -> Int {
+    return 1 + number
+  }
+  return addOne
+}
+
+var increment = makeIncrementer()
+increment(7)
 
 
 
