@@ -468,6 +468,47 @@ let optionalSquare: Square? = Square(sideLength: 2.5, name: "optional square")
 let sideLength = optionalSquare?.sideLength
 
 
+/*  ———————————————————————————————————————————————————
+            Enumerations and Structures
+—————————————————————————————————————————————————   */
+
+//Use `enum` to create an enumeration. Like classes and all other named types, enumerations can have methods associated with them.
+
+enum Rank: Int {
+  case Ace = 1
+  case Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten
+  case Jack, Queen, King
+  func simpleDescription() -> String {
+    switch self {
+    case .Ace:
+      return "ace"
+    case .Jack:
+      return "jack"
+    case .Queen:
+      return "queen"
+    case .King:
+      return "king"
+    default:
+      return String(self.rawValue)
+    }
+  }
+}
+
+let ace = Rank.Ace
+let aceRawValue = ace.rawValue
+let king = Rank.King
+let kingRawValue = king.rawValue
+
+func compareValues(first: Rank, second: Rank) -> Int {
+  if(first.rawValue > second.rawValue){
+    return first.rawValue
+  } else {
+    return second.rawValue
+  }
+}
+compareValues(Rank.Jack,Rank.Seven)
+
+//In the above example, the raw-value type of the enumeration is Int, so you only have to specify the first raw value. The rest of the raw values are assigned in order. You can also use strings or floating-point numbers as the raw type of an enumeration. Use the rawValue property to access the raw value of an enumeration member.
 
 
 
