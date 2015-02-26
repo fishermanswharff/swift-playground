@@ -421,8 +421,73 @@ In the setter for perimeter, the new value has the implicit name `newValue`. You
 1. Setting the value of properties that the subclass declares
 2. Calling the superclass's initializer
 3. Changing the value of properties defined by the superclass. Any additional setup work that uses methods, getters, or setters can also be done at this point
-
 */
+
+
+//If you don't need to compute the property but still need to provide code that is run before and after setting a new value, use `willSet` and `didSet`. For example, the class below ensures that the side length of its triangle is always the same as the side length of its square
+class TriangleAndSquare {
+  var triangle: EquilateralTriangle {
+    willSet {
+      square.sideLength = newValue.sideLength
+    }
+  }
+
+  var square: Square {
+    willSet {
+      triangle.sideLength = newValue.sideLength
+    }
+  }
+
+  init(size:Double, name:String) {
+    square = Square(sideLength: size, name: name)
+    triangle = EquilateralTriangle(sideLength: size, name: name)
+  }
+}
+
+var triangleAndSquare = TriangleAndSquare(size:10,name:"another test shape")
+triangleAndSquare.square.sideLength
+triangleAndSquare.triangle.sideLength
+triangleAndSquare.square = Square(sideLength: 50, name: "larger square")
+triangleAndSquare.triangle.sideLength
+
+//Methods on classes have one important difference from functions. Parameter names in functions are used only within the function, but parameter names in methods are also used when you call the method (except for the first parameter). By default, a method has the same name for its parameters when you call it and within the method itself. You can specify a second name, which is used inside the method.
+
+class Counter {
+  var count: Int = 0
+  func incrementBy(amount: Int, numberOfTimes times: Int) {
+    count += amount * times
+  }
+}
+
+var counter = Counter()
+counter.incrementBy(2,numberOfTimes: 7)
+
+//when working with optional values, you can write `?` before operations like methods, properties, and subscripting. If the value before the ? is nil, everything after the ? is ignored and the value of the whole expression is nil. Otherwise, the optional value is unwrapped, and everything after the ? acts on the unwrapped value. In both cases, the value of the whole expression is an optional value.
+
+let optionalSquare: Square? = Square(sideLength: 2.5, name: "optional square")
+let sideLength = optionalSquare?.sideLength
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
