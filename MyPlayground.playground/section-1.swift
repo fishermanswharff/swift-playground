@@ -228,19 +228,53 @@ func makeIncrementer() -> (Int -> Int) {
 var increment = makeIncrementer()
 increment(7)
 
+//a function can take another function as one of its arguments
+func hasAnyMatches(list: [Int], condition: Int -> Bool) -> Bool {
+  for item in list {
+    if condition(item) {
+      return true
+    }
+  }
+  return false
+}
 
+func lessThanTen(number: Int) -> Bool {
+  return number < 10
+}
+var numbers = [20,19,7,12]
+hasAnyMatches(numbers, lessThanTen)
 
+//functions are actually a special case of closures: blocks of code that can be called later. The code in a closure has access to things like variables and functions that were available in the scope where the closure was created, even if the closure is in a different scope when it is executed. You can write a closure without a name by surrounding the code with braces
 
+numbers.map({
+  (number: Int) -> Int in
+  let result = 3 * number
+  return result
+})
 
+numbers.map({
+  (number: Int) -> Int in
+  let result = 3 * number
+  if(result % 2 != 0) {
+    return 0
+  } else {
+    return result
+  }
+})
 
+//You have several options for writing closures more concisely. When a closure's type is already known, such as the callback for a delegate, you can omit the type of its parameters, its return type, or both. Single statement closures implicitly return the value of their only statement.
 
+let mappedNumbers = numbers.map({
+  number in 3 * number
+})
+mappedNumbers
 
+//you can refer to params by number instead of by name—this approach is especially useful in very short closures. A closure passed as the last argument to a function can appear immediately after the parens
 
-
-
-
-
-
+let sortedNumbers = sorted(numbers){
+  $0 > $1
+}
+sortedNumbers
 
 
 
