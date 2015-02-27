@@ -508,28 +508,191 @@ func compareValues(first: Rank, second: Rank) -> Int {
 }
 compareValues(Rank.Jack,Rank.Seven)
 
-//In the above example, the raw-value type of the enumeration is Int, so you only have to specify the first raw value. The rest of the raw values are assigned in order. You can also use strings or floating-point numbers as the raw type of an enumeration. Use the rawValue property to access the raw value of an enumeration member.
+/*
+In the above example, the raw-value type of the enumeration is Int, so you only have to specify the first raw value. The rest of the raw values are assigned in order. You can also use strings or floating-point numbers as the raw type of an enumeration. Use the rawValue property to access the raw value of an enumeration member.
+Use the `init?(rawValue:)` initializer to make an instance of an enumeration from a raw value.
+*/
+
+if let convertedRank = Rank(rawValue: 3) {
+  let threeDescription = convertedRank.simpleDescription()
+}
+
+//The member values of an enumeration are actual values, not just another way of writing their raw values. In fact, in cases where there isn't a meaningful raw value, you don't have to provide one.
+
+enum Suit {
+  case Spades, Hearts, Diamonds, Clubs
+
+  func simpleDescription() -> String {
+    switch self {
+    case .Spades:
+      return "spades"
+    case .Hearts:
+      return "hearts"
+    case .Diamonds:
+      return "diamonds"
+    case .Clubs:
+      return "clubs"
+    }
+  }
+
+  func color() -> String {
+    switch self {
+    case .Spades:
+      return "black"
+    case .Clubs:
+      return "black"
+    case .Diamonds:
+      return "red"
+    case .Hearts:
+      return "red"
+    }
+  }
+}
+
+let hearts  = Suit.Hearts
+let heartsDescription = hearts.simpleDescription()
+let heartsColor = hearts.color()
+//experiement: add a color method to Suit that returns "black for spades and clubs, and returns "red" for hearts and diamonds
+
+// use struct to create a structure. Structures support many of the same behaviors as classes, including methods and initializers. One of the most important differences between structures and classes is that structures are always copied when they are passed around in your code, but classes are passed by reference.
+
+struct Card {
+  var rank: Rank
+  var suit: Suit
+
+  func simpleDescription() -> String {
+    return "The \(rank.simpleDescription()) of \(suit.simpleDescription())"
+  }
+
+  func makeDeck(ranks: [Rank], suits: [Suit]) -> Int {
+    var cardCount = 0
+    for r in ranks {
+      for s in suits {
+        var card = Card(rank: r, suit: s)
+        cardCount += 1
+      }
+    }
+    return cardCount
+  }
+}
+
+struct Deck {
+
+  func makeDeck(ranks: [Rank], suits: [Suit]) -> Int {
+    var cardCount = 0
+    for r in ranks {
+      for s in suits {
+        let card = Card(rank: r, suit: s)
+        cardCount += 1
+      }
+    }
+    return cardCount
+  }
+}
+
+let threeOfSpades = Card(rank: .Three, suit: .Spades)
+let threeOfSpadesDescription = threeOfSpades.simpleDescription()
+
+//this is an experiment from the book, that asks for a method that creates a full deck of cards, with one card of each combination of rank and suit.
+//I don't like this, because I have to call the makeDeck() function on an instance of a card, which doesn't feel right.
+let deck = threeOfSpades.makeDeck([.Ace,.Two,.Three,.Four,.Five,.Six,.Seven,.Eight,.Nine,.Ten,.Jack,.Queen,.King],suits: [.Hearts,.Diamonds,.Clubs,.Spades])
+
+//instead o fusing Card to make a deck, I created a new struct: `Deck` which is responsible for making the deck
+let newDeck = Deck()
+newDeck.makeDeck([.Ace,.Two,.Three,.Four,.Five,.Six,.Seven,.Eight,.Nine,.Ten,.Jack,.Queen,.King],suits: [.Hearts,.Diamonds,.Clubs,.Spades])
 
 
+enum ServerResponse {
+  case Error(String)
+  case Result(String, String)
+  case Warning(String)
+}
 
+let warning = ServerResponse.Warning("Danger Will Robinson")
+let success = ServerResponse.Result("6:00am", "8:09pm")
+let failure = ServerResponse.Error("Out of Cheese")
 
+switch success {
+case let .Result(sunrise, sunset):
+  let serverResponse = "Sunrise is at \(sunrise) and sunset is at \(sunset)."
+case let .Error(error):
+  let serverResponse = "Failure...\(error)"
+case let .Warning(warning):
+  let serverResponse = "The world is about to end...\(warning)"
+}
 
+/* ————————————————————————————————————————————————————
+                  Protocols and Extensions
+—————————————————————————————————————————————————————— */
 
+//Use protocol to declare a protocol
+protocol ExampleProtocol {
+  var simpleDescription: String { get }
+  mutating func adjust()
+}
 
+// Classes, enumerations, and structs can all adopt protocols
 
+class SimpleClass: ExampleProtocol {
+  var simpleDescription: String = "A very simple class."
+  var anotherProperty: Int = 69105
+  func adjust(){
+    simpleDescription += " Now 100% adjusted."
+  }
+}
+var a = SimpleClass()
+a.adjust()
+let aDescription = a.simpleDescription
 
+struct SimpleStructure: ExampleProtocol {
+  var simpleDescription: String = "A simple structure"
+  mutating func adjust(){
+    simpleDescription += " (adjusted)"
+  }
+}
 
+var b = SimpleStructure()
+b.adjust()
+let bDescription = b.simpleDescription
 
+enum Redline {
+  case Alewife, Davis, Porter, Harvard, Central, Kendall, Charles
 
+  func simpleDescription() -> String {
+    switch self {
+    case .Alewife:
+      return "Lucky ones to get a seat"
+    case .Davis:
+      return "Shoulder to shoulder at 8am"
+    case .Porter:
+      return "Maybe you'll get pole to hold onto"
+    case .Harvard:
+      return "gotta be there before 8."
+    default:
+      return "good luck getting to work."
+    }
+  }
 
+  mutating func adjust(){
+    // how does this work?
+  }
+}
 
+let stop0 = Redline.Alewife
+stop0.simpleDescription()
 
+//Use extension to add functionality to an existing type, such as new methods computed to properties
 
+extension Int: ExampleProtocol {
+  var simpleDescription: String {
+    return "The number \(self)"
+  }
+  mutating func adjust() {
+    self += 42
+  }
+}
 
-
-
-
-
+7.simpleDescription
 
 
 
