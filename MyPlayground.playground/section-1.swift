@@ -710,5 +710,3 @@ extension Int: ExampleProtocol {
 
 
 
-
-
