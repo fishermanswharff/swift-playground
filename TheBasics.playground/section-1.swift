@@ -388,19 +388,20 @@ serverResponseCode = nil
 //nil cannot be used with nonoptional constants and variables. If a constant or variable in your code needs to work with the absence of a value under certain conditions, always declare it as an optional value of the appropriate type. 
 
 //  this also sets the initial value to nil:
+
 var surveyAnswer: String?
 
+/*  If statements and forced unwrapping
+———————————————————————————————————————————————————
+You can use an if statement to find out whether an optional contains a value by comparing the optional against nil.
+*/
 
-
-
-
-
-
-
-
-
-
-
+if convertedNumber != nil {
+  //  prints the line "convertedNumber contains some integer value: Optional(123)"
+  println("convertedNumber contains some integer value: \(convertedNumber)")
+  //  once you're sure that the optional does contain a value, you can access its underlying value by adding an exclamation mark to the end of the optional's name. The exclamation mark effectively says, "I know that this optional contains a value, please use it." This is knows as forced unwrapping of the optional's value
+  println("convertedNumber contains some integer value: \(convertedNumber!)")
+}
 
 
 
