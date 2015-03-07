@@ -374,9 +374,21 @@ let possibleNumber = "123"
 let convertedNumber = possibleNumber.toInt()
 //coverted number is inferred to be of type "Int?", or "optional Int"
 
-/*  Because the toInt method might fail, it returns an optional Int, rather than an Int. An optional Int is written as Int?, not Int. The question mark indicates that the value it contains is optional, meaning that it might contain some Int valu, or it might contain no value at all. (It can't contain anything else, such as a Bool or String. it's either an Int or nothing at all).
+/*  Because the toInt method might fail, it returns an optional Int, rather than an Int. An optional Int is written as Int?, not Int. The question mark indicates that the value it contains is optional, meaning that it might contain some Int valu, or it might contain no value at all. (It can't contain anything else, such as a Bool or String. it's either an Int or nothing at all). */
 
 
+/*  nil
+———————————————————————————————————————————————————
+  You set an optional variable to a valueless state by assigning it the special value nil:
+*/
+
+var serverResponseCode: Int? = 404
+serverResponseCode = nil
+
+//nil cannot be used with nonoptional constants and variables. If a constant or variable in your code needs to work with the absence of a value under certain conditions, always declare it as an optional value of the appropriate type. 
+
+//  this also sets the initial value to nil:
+var surveyAnswer: String?
 
 
 
