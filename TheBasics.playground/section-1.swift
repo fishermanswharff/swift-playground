@@ -240,32 +240,92 @@ Use the Int type for all general-purpose integer constants and variables in your
  Use other integer types only when they are specifically needed for the task at hand, because of explicitly-sized data from an external source, or for performance, memory usage, or other necessary optimization. Using explicitly-sized types in these situations helps to catch any accidental value overflows and implicitly documents the nature of the data being used.
 */
 
+/*  Integer Conversion
+————————————————————————————————————————————————————————————
+ The range of numbers that can be stored in an integer constant or variable is different for each numeric type. An Int8 constant or variable can store numbers between -128 and 127, whereas a UInt8 constant or variable can store numbers between 0 and 255. A number that will not fit into a constant or variable of a sized integer type is reported as an error when your code is compiled:
+
+*/
+
+//let cannotBeNegative: UInt8 = -1
+// UInt8 cannot store negative numbers, and so this will report an error
+//let tooBig: Int8 = Int8.max + 1
+// Int8 cannot store a number larger than its maximum value, and so this will also report an error
+
+/* Because each numeric type can store a different range of values, you must opt in to numeric type conversion on a case-by-case basis. This opt-in approach prevents hidden conversion errors and helps make type conversion intentions explicit in your code. To convert one specific number type to another, you initialize a new number of the desired type with the existing value. In the example below, the constant twoThousand is of type UInt16, whereas the constant one is of type UInt8. They cannot be added together directly, because they are not of the same type. Instead, this example calls UInt16(one) to create a new UInt16 initialized with the value of one, and uses this value in place of the original:  */
+
+let twoThousand: UInt16 = 2_000
+let one: UInt8 = 1
+let twoThousandAndOne = twoThousand + UInt16(one)
+
+
+/*  Integer and Floating-Point Conversion
+———————————————————————————————————————————————————————————————
+Conversions between integer and floating-point numeric types must be made explicit:  */
+let three = 3
+let oneFourOneFiveNine = 0.14159
+let new_pi = Double(three) + oneFourOneFiveNine
+
+// Here, the value of the constant three is used to create a new value of type Double, so that both sides of the addition are of the same type. Without this conversion in place, the addition would not be allowed.
+
+let integerPi = Int(pi)
+// integerPi equals 3, and is inferred to be of type Int
+
+/*  Type Aliases
+———————————————————————————————————————————————————————————————
+Type aliases define an alternative name for an existing type. You define type aliases with the typealias keyword.
+ Type aliases are useful when you want to refer to an existing type by a name that is contextually more appropriate, such as when working with data of a specific size from an external source:
+*/
+
+typealias AudioSample = UInt16
+
+//  Once you define a type alias, you can use the alias anywhere you might use the original name: 
+
+var maxAmplitudeFound = AudioSample.min
+// maxAmplitudeFound is now 0
+
+//  Here, AudioSample is defined as an alias for UInt16. Because it is an alias, the call to AudioSample.min actually calls UInt16.min, which provides an initial value of 0 for the maxAmplitudeFound variable.
+
+
+/*  Booleans
+———————————————————————————————————————————————————
+ Swift has a basic Boolean type, called Bool. Boolean values are referred to as logical, because they can only ever be true or false. Swift provides two Boolean constant values, true and false:
+*/
+
+let orangesAreOrange = true
+let turnipsAreDelicious = false
+
+if turnipsAreDelicious {
+  println("Mmm, tasty turnips!")
+} else {
+  println("Eww, turnips are horrible.")
+}
+
+//  conditional statements such as the if statement are covered in more detail in Control flow
+
+//  Swift's type safety prevents non-Boolean values from being substituted for Bool. The following example reports a compile-time error:
 
 
 
+//  this example will not compile, but report an error
+//let i = 1
+//if i {
+//
+//}
+
+//  however, the alternative example below is valid:
+
+let i = 1
+if i == 1 {
+  println("one is the lonliest number")
+}
+//  The result of the i == 1 comparison is type Bool
 
 
+/*  Tuples
+—————————————————————————————————————————————
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
 
 
 
