@@ -357,8 +357,24 @@ println("Status code 200 means: \(http200Status.description)")
 
 //  Tuples are particularly useful as the return value of functions. A functions that tries to retrieve a web page might return the (Int, String) tuple type to describe the success or failure of the page retrieval. By returning a tuple with two distinct values, each of a different type, the function provides more useful information about its outcome than if it could only return a single value of a single type.
 
+/*  Optionals
+—————————————————————————————————————————————————
+You use optional in situations where a value may be absent. An optional says:
 
+There is a value, and it equals x
 
+or 
+
+There isn't a value at all
+
+Here's an example of how optionals can be used to cope with the absence of a value.
+*/
+
+let possibleNumber = "123"
+let convertedNumber = possibleNumber.toInt()
+//coverted number is inferred to be of type "Int?", or "optional Int"
+
+/*  Because the toInt method might fail, it returns an optional Int, rather than an Int. An optional Int is written as Int?, not Int. The question mark indicates that the value it contains is optional, meaning that it might contain some Int valu, or it might contain no value at all. (It can't contain anything else, such as a Bool or String. it's either an Int or nothing at all).
 
 
 
