@@ -323,16 +323,39 @@ if i == 1 {
 
 /*  Tuples
 —————————————————————————————————————————————
-
-
+Tuples gropu multiple values into a single compound value. The values within a tuple can be of any type and do not have to be of the same type as each other.  In this example, (404, "Not Found") is a tuple that describes an HTTP status code.
 */
 
+let http404Error = (404, "Not Found")
 
+// You can create tuples from any permutation of types, and they can contain as many different types as you like. 
 
+//  You can decompose a tuple's contents into separate constants or variables, which you then access as usual:
 
+let (statusCode, statusMessage) = http404Error
+println("The status code is \(statusCode)")
+println("The status message is \(statusMessage)")
 
+//   If you only need some of the tuple's values, ignore parts of the tuple with an underscore (_) when you decompose the tuple:
 
+let (justTheStatusCode,_) = http404Error
+println("The status code is \(justTheStatusCode)")
 
+//  Alternatively, access individual element values in a tuple using index numbers starting at zero:
+
+println("The status code is \(http404Error.0)")
+println("The status message is \(http404Error.1)")
+
+//  You can name the individual elements in a tuple when the tuple is defined
+
+let http200Status = (statusCode: 200, description: "OK")
+
+//  if you name the elements in a tuple, you can use the element names to access the values of those elements
+
+println("Accessing tuple values by element names is easy, like so: \(http200Status.statusCode)")
+println("Status code 200 means: \(http200Status.description)")
+
+//  Tuples are particularly useful as the return value of functions. A functions that tries to retrieve a web page might return the (Int, String) tuple type to describe the success or failure of the page retrieval. By returning a tuple with two distinct values, each of a different type, the function provides more useful information about its outcome than if it could only return a single value of a single type.
 
 
 
