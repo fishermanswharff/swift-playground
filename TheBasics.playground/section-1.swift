@@ -403,9 +403,29 @@ if convertedNumber != nil {
   println("convertedNumber contains some integer value: \(convertedNumber!)")
 }
 
+/*  Optional Binding
+—————————————————————————————————————————————————————
+You use optional binding to find out whether an optional contains a value, and if so, to make that value available as a temporary constant or variable. Optional binding can be used with if and while statements to check for a value inside an optional, and to extract that value into a constant or variable, as part of a single action.
+*/
 
+if let actualNumber = possibleNumber.toInt() {
+  println("\'\(possibleNumber)\' has an integer value of \(actualNumber)")
+} else {
+  println("\'\(possibleNumber)\' could not be converted to an integer")
+}
 
+/*  Implicitly unwrapped optionals
+—————————————————————————————————————————————————
+sometimes it's clear from a program's structure that an optional will always have a value, after that value is first set. In these cases, it is useful to remove the need to check an unwrap the optional's value every time it is accessed, because it can be safely assumed to have a value all of the time. These kinds of optionals are defined as implicitly unwrapped optionals
+*/
 
+let possibleString: String? = "An optional string"
+let forcedString: String = possibleString!
+
+let assumedString: String! = "An implicitly unwrapped optional string."
+let implicitString: String! = assumedString
+
+//  if you try to access an implicitly unwrapped optional when it does not contain a value, you will trigger a runtime error. The result is exactly the same as if you place an exclamation mark after a normal optional that does not contain a value.
 
 
 
