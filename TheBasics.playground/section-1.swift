@@ -427,8 +427,20 @@ let implicitString: String! = assumedString
 
 //  if you try to access an implicitly unwrapped optional when it does not contain a value, you will trigger a runtime error. The result is exactly the same as if you place an exclamation mark after a normal optional that does not contain a value.
 
+/*  Assertions
+———————————————————————————————————————————
+Optionals enable you to check for values that may or may not exist, and to write code that gracefully copes with the absence of values. In some cases however, it is simply not possible for your code to continue execution if a value does not exist, or if a provided value does not satisfy a certain condition.
 
+an assertion is a runtime check that a logical condition definitely evaluates to true. Literally put, an assertion "asserts" that a condition is true.
 
+If your code triggers an assertion while running in a debug environment, such as when you build and run an app in Xcode, you can see exactly where the invalid state occurred and query the state of your app at the time that the assertion was triggered. An assertion also lets you provide a suitable debug message as to the nature of the assert. 
+
+ You write an assertion by calling the global assert function. You pass the assert function an expression that evaluates to true or false and a message that should be displayed if the result of the condition is false:
+*/
+
+let age = -3
+//assert(age >= 0, "A person's age cannot be less than zero")
+//  the above line causes the assertion to trigger, because age is not >= 0
 
 
 
