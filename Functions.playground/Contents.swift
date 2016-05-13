@@ -195,7 +195,6 @@ let moveNearerToZero = chooseStepFunction(currentValue > 0)
 // moveNearerToZero now refers to the stepBackward() function
 print(moveNearerToZero)
 
-
 print("Counting to zero:")
 // Counting to zero:
 while currentValue != 0 {
