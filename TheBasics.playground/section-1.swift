@@ -490,7 +490,7 @@ if let actualNumber = Int(possibleNumber) {
 //  You can include multiple optional bindings in a single if statement and use a where clause to check for a Boolean condition. If any of the values in the optional bindings are nil or the where clause evaluates to false, the whole optional binding is considered unsuccessful.
 
 if let firstNumber = Int("4"), secondNumber = Int("42") where firstNumber < secondNumber {
-    print("\(firstNumber) < \(secondNumber)", terminator: "")
+  print("\(firstNumber) < \(secondNumber)", terminator: "")
 }
 
 
@@ -511,8 +511,56 @@ let implicitString: String! = assumedString
 
 //  if you try to access an implicitly unwrapped optional when it does not contain a value, you will trigger a runtime error. The result is exactly the same as if you place an exclamation mark after a normal optional that does not contain a value.
 
-/*  Assertions
-———————————————————————————————————————————
+
+/* ———————————————————————————————————————————————————————
+ 
+                    Error Handling
+ 
+——————————————————————————————————————————————————————— */
+
+//  You use error handling to respond to error conditions your program may encounter during execution. In constrast to optional, which can use the presence or absence of a value to communicate success or failure of a function, error handling allows you to determine the underlying cause of failure, and if necessary, propogate the error to another part of your program. When a function encounters an error condition it throws an error. That function's caller can then catch the error and respond appropriately.
+
+func canThrowAnError() throws {
+  // this function may or may not throw an error;
+}
+
+//  A function indicates that it can thro an error by including the throws keywork in its declaration. when you call a function that can throw an error, you prepend the try keyword to the expression.
+
+//  Swift automatically propogates errors out of their current scope until they are handled by a catch clause.
+
+do {
+  try canThrowAnError()
+  //  no error was thrown
+} catch {
+  // an error was thrown
+}
+
+//  A do statement creates a new containing scope, which allows errors to be propogated to one or more catch clauses.
+//  Here's an example of how error handling can be used to respond to different error conditions:
+
+/*
+func makeASandwich() throws {
+
+}
+
+do {
+  try makeASandwich()
+  eatASandwich()
+} catch Error.OutOfCleanDishes {
+  washDishes()
+} catch Error.MissingIngredients(let ingredients){
+  buyGroceries(ingredients)
+}
+*/
+
+/* ———————————————————————————————————————————————————————
+
+                    Assertions
+
+ ——————————————————————————————————————————————————————— */
+
+
+/*
 Optionals enable you to check for values that may or may not exist, and to write code that gracefully copes with the absence of values. In some cases however, it is simply not possible for your code to continue execution if a value does not exist, or if a provided value does not satisfy a certain condition.
 
 an assertion is a runtime check that a logical condition definitely evaluates to true. Literally put, an assertion "asserts" that a condition is true.

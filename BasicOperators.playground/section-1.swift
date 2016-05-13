@@ -1,6 +1,6 @@
 // Playground - noun: a place where people can play
 
-// import UIKit
+import UIKit
 
 /*  BASIC OPERATORS
 ================================================================================
@@ -25,7 +25,7 @@ a = b
 
 // If the right side of the assignment is a tuple with multiple values, its elements can be decomposed into multiple constants or variables at once: 
 let (x,y) = (1,2)
-
+print(x,y, terminator: "")
 //  arithmetic
 //————————————
 1 + 2
@@ -51,22 +51,12 @@ let (x,y) = (1,2)
 //———————————————————————————————————
 
 var i = 0
-++i //returns 1
-i++ //returns 1, but the result of the operation is 2
+i += 1
+i += 1
 i
 
-//  each time you call ++i the value if i is increased by 1
---i
-
-//If the operator is written before the variable, it increments the variable before returning its value. 
-//If the operator is written after the variable, it increments the variable after returning its value.
-
-var c = 0
-let d = ++c
-
-let e = c++ //this returns 1, when the actual value of c is now 2
-
-
+//  each time you call i += 1 the value of i is increased by 1
+i -= 1
 
 //  unary minus operator
 //——————————————————————
@@ -102,9 +92,9 @@ f += 2
 
 let name = "world"
 if name == "world" {
-  println("hello world")
+  print("hello world")
 } else {
-  println("I'm sorry \(name), but I don't recognize you.")
+  print("I'm sorry \(name), but I don't recognize you.")
 }
 
 
@@ -162,7 +152,7 @@ The closed range operator is useful when iterating over a range in which you wan
 */
 
 for index in 1...5 {
-  println("\(index) times 5 is \(index * 5)")
+  print("\(index) times 5 is \(index * 5)")
 }
 
 
@@ -177,7 +167,7 @@ Half-open ranges are particularly useful when you work with zero-based lists suc
 let names = ["Anna", "Alex", "Brian", "Jack"]
 let count = names.count
 for i in 0..<count {
-  println("Person \(i + 1) is called \(names[i])")
+  print("Person \(i + 1) is called \(names[i])")
 }
 
 /* 
@@ -205,7 +195,7 @@ The logical NOT operator is a prefix operator and appears immediately before the
 
 let allowedEntry = false
 if !allowedEntry {
-  println("ACCESS DENIED")
+  print("ACCESS DENIED")
 }
 
 /* 
@@ -228,9 +218,9 @@ let enteredDoorCode = true
 let passedRetinaScan = false
 
 if enteredDoorCode && passedRetinaScan {
-  println("Welcome")
+  print("Welcome")
 } else {
-  println("ACCESS DENIED")
+  print("ACCESS DENIED")
 }
 
 //  Logical OR Operator
@@ -246,9 +236,9 @@ if enteredDoorCode && passedRetinaScan {
 let hasDoorKey = false
 let knowsOverridePassword = true
 if hasDoorKey || knowsOverridePassword {
-  println("Welcome")
+  print("Welcome")
 } else {
-  println("ACCESS DENIED")
+  print("ACCESS DENIED")
 }
 
 
@@ -258,9 +248,9 @@ if hasDoorKey || knowsOverridePassword {
 //  You can combine mutliple logic operators to create longer compound expressions:
 
 if enteredDoorCode && passedRetinaScan || hasDoorKey || knowsOverridePassword {
-  println("Welcome!")
+  print("Welcome!")
 } else {
-  println("ACCESS DENIED")
+  print("ACCESS DENIED")
 }
 
 //  this example uses multiple && and || operators to create a longer compound expression. However the && and || operators still operate on only two values, so this is actually three smaller expressions chained together. The example can be read as: If we've entered the correct door and passed the retina scann, or if we have a valid door key, or if we know the emergency override password, then allow access
@@ -275,9 +265,9 @@ if enteredDoorCode && passedRetinaScan || hasDoorKey || knowsOverridePassword {
 //  It is sometimes useful to include parentheses when they are not strictly needed, to make the intention of a complex expression easier to read. In the door access example above, it is useful to add parentheses around the first part of the compound expression to make its intent explicit:
 
 if(enteredDoorCode && passedRetinaScan) || hasDoorKey || knowsOverridePassword {
-  println("Welcome")
+  print("Welcome")
 } else {
-  println("ACCESS DENIED")
+  print("ACCESS DENIED")
 }
 
 
