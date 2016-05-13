@@ -125,22 +125,29 @@ a
 comment
 */
 
-/*              Semicolons            */
-/*————————————————————————————————————*/
+/* ————————————————————————————————————————————————————————————————
+ 
+                                Semicolons
+ 
+ ———————————————————————————————————————————————————————————————— */
 
 //  Unlike many other languages, Swift does not require you to write a semicolon after each statement in your code, although you can do so if you wish
+
 //  Semicolons are required however if you want to write multiple separate statements on a single line:
 
 let cat = "🐱"; print(cat)
 
+/* ————————————————————————————————————————————————————————————————
+ 
+                                Integers
+ 
+ ———————————————————————————————————————————————————————————————— */
 
-/*              Integers              */
-/*————————————————————————————————————*/
+/*
 
-/*  
-Integers are whole numbers with no fractional component, such as 42 and -23. Integers are either signed (positive, zero, or negative) or unsigned (positive or zero).
+ Integers are whole numbers with no fractional component, such as 42 and -23. Integers are either signed (positive, zero, or negative) or unsigned (positive or zero).
 
-Swift provides signed and unsigned integers in 8, 16, 32, and 64 bit forms. These integers follow a naming convention similar to C, in that an 8-bit unsigned integer is of type UInt8, and a 32-bit signed integer is of type Int32. Like all types in swift, these integer types have capitalized names.
+ Swift provides signed and unsigned integers in 8, 16, 32, and 64 bit forms. These integers follow a naming convention similar to C, in that an 8-bit unsigned integer is of type UInt8, and a 32-bit signed integer is of type Int32. Like all types in swift, these integer types have capitalized names.
 */
 
 let minValue = UInt8.min //minValue is equal to 0, and is of type UInt8
@@ -155,18 +162,28 @@ let max64Value = UInt64.max //18446744073709551615
 */
 
 
-/*      Floating-Point Numbers        */
-/*————————————————————————————————————
 
-Floating-point numbers are numbers with a fractional component, such as 3.14159, 0.1, and -273.15.
-Double represents a 64-bit floating-point number. Use it when floating-point values must be very large or particularly precise.
-Float represents a 32-bit floating-point number. Use it when floating-point values do not require 64-bit precision.
-Double has a precision of at least 15 decimal digits, whereas the precision of Float can be as little as 6 decimal digits. The appropriate floating-point type to use depends on the nature and range of values you need to work with in your code.
+/* ————————————————————————————————————————————————————————————————
+ 
+                    Floating-Point Numbers
+ 
+ ———————————————————————————————————————————————————————————————— */
+
+/*
+ Floating-point numbers are numbers with a fractional component, such as 3.14159, 0.1, and -273.15.
+ Double represents a 64-bit floating-point number. Use it when floating-point values must be very large or particularly precise.
+ Float represents a 32-bit floating-point number. Use it when floating-point values do not require 64-bit precision.
+ Double has a precision of at least 15 decimal digits, whereas the precision of Float can be as little as 6 decimal digits. The appropriate floating-point type to use depends on the nature and range of values you need to work with in your code.
 */
 
 
 
-/*      Type Safety and Type Inference    */
+/* ————————————————————————————————————————————————————————————————
+ 
+                    Type Safety and Type Inference
+ 
+ ———————————————————————————————————————————————————————————————— */
+
 /*————————————————————————————————————————————————————————————————
 Swift is a type safe language. A type safe language encourages you to be clear about the types of values your code can work with. If part of your code expects a String, you can't pass an Int by mistake.
 
@@ -198,9 +215,13 @@ let anotherPi = 3 + 0.14159
 
 // The literal value of 3 has no explicit type in and of itself, and so an appropriate output type of Double is inferred from the presence of a floating-point literal as part of the addition
 
+/* ————————————————————————————————————————————————————————————————
+ 
+                            Numeric Literals
+ 
+ ———————————————————————————————————————————————————————————————— */
 
-/*  Numeric Literals
-——————————————————————————————————————————————
+/*
 Integer literals can be written as: 
   
 - A decimal number, with no prefix
@@ -242,14 +263,24 @@ let paddedDouble = 000123.456
 let oneMillion = 1_000_000
 let justOverOneMillion = 1_000_000.000_000_1
 
-/*  Numeric Type Conversion
-————————————————————————————————————————————————————————————
+/* ————————————————————————————————————————————————————————————————
+ 
+                    Numeric Type Conversion
+ 
+ ———————————————————————————————————————————————————————————————— */
+
+/*
 Use the Int type for all general-purpose integer constants and variables in your code, even if they are known to be non-negative. Using the default integer type in everyday situations means that integer constants and variables are immediately interoperable in your code and will match the inferred type for integer literal values.
  Use other integer types only when they are specifically needed for the task at hand, because of explicitly-sized data from an external source, or for performance, memory usage, or other necessary optimization. Using explicitly-sized types in these situations helps to catch any accidental value overflows and implicitly documents the nature of the data being used.
 */
 
-/*  Integer Conversion
-————————————————————————————————————————————————————————————
+
+/* ————————————————————————————————————————————————————————————————
+ 
+                        Integer Conversion
+ 
+ ———————————————————————————————————————————————————————————————— */
+/*
  The range of numbers that can be stored in an integer constant or variable is different for each numeric type. An Int8 constant or variable can store numbers between -128 and 127, whereas a UInt8 constant or variable can store numbers between 0 and 255. A number that will not fit into a constant or variable of a sized integer type is reported as an error when your code is compiled:
 
 */
@@ -266,9 +297,13 @@ let one: UInt8 = 1
 let twoThousandAndOne = twoThousand + UInt16(one)
 
 
-/*  Integer and Floating-Point Conversion
-———————————————————————————————————————————————————————————————
-Conversions between integer and floating-point numeric types must be made explicit:  */
+/* ————————————————————————————————————————————————————————————————
+ 
+                Integer and Floating-Point Conversion
+ 
+ ———————————————————————————————————————————————————————————————— */
+
+// Conversions between integer and floating-point numeric types must be made explicit:  
 let three = 3
 let oneFourOneFiveNine = 0.14159
 let new_pi = Double(three) + oneFourOneFiveNine
@@ -278,8 +313,15 @@ let new_pi = Double(three) + oneFourOneFiveNine
 let integerPi = Int(pi)
 // integerPi equals 3, and is inferred to be of type Int
 
-/*  Type Aliases
-———————————————————————————————————————————————————————————————
+
+/* ————————————————————————————————————————————————————————————————
+ 
+                            Type Aliases
+ 
+ ———————————————————————————————————————————————————————————————— */
+
+
+/*
 Type aliases define an alternative name for an existing type. You define type aliases with the typealias keyword.
  Type aliases are useful when you want to refer to an existing type by a name that is contextually more appropriate, such as when working with data of a specific size from an external source:
 */
@@ -294,8 +336,14 @@ var maxAmplitudeFound = AudioSample.min
 //  Here, AudioSample is defined as an alias for UInt16. Because it is an alias, the call to AudioSample.min actually calls UInt16.min, which provides an initial value of 0 for the maxAmplitudeFound variable.
 
 
-/*  Booleans
-———————————————————————————————————————————————————
+/* ————————————————————————————————————————————————————————————————
+ 
+                            Booleans
+ 
+ ———————————————————————————————————————————————————————————————— */
+
+
+/*
  Swift has a basic Boolean type, called Bool. Boolean values are referred to as logical, because they can only ever be true or false. Swift provides two Boolean constant values, true and false:
 */
 
@@ -329,8 +377,13 @@ if i == 1 {
 //  The result of the i == 1 comparison is type Bool
 
 
-/*  Tuples
-—————————————————————————————————————————————
+/* ————————————————————————————————————————————————————————————————
+ 
+                                Tuples
+ 
+ ———————————————————————————————————————————————————————————————— */
+
+/*
 Tuples gropu multiple values into a single compound value. The values within a tuple can be of any type and do not have to be of the same type as each other.  In this example, (404, "Not Found") is a tuple that describes an HTTP status code.
 */
 
@@ -365,24 +418,28 @@ print("Status code 200 means: \(http200Status.description)")
 
 //  Tuples are particularly useful as the return value of functions. A functions that tries to retrieve a web page might return the (Int, String) tuple type to describe the success or failure of the page retrieval. By returning a tuple with two distinct values, each of a different type, the function provides more useful information about its outcome than if it could only return a single value of a single type.
 
-/*  Optionals
-—————————————————————————————————————————————————
-You use optional in situations where a value may be absent. An optional says:
+/* ————————————————————————————————————————————————————————————————
+ 
+                            Optionals
+ 
+ ———————————————————————————————————————————————————————————————— */
+/*
+ You use optional in situations where a value may be absent. An optional says:
 
-There is a value, and it equals x
+ There is a value, and it equals x
 
-or 
+ or
 
-There isn't a value at all
+ There isn't a value at all
 
-Here's an example of how optionals can be used to cope with the absence of a value.
+ Here's an example of how optionals can be used to cope with the absence of a value.
 */
 
 let possibleNumber = "123"
-let convertedNumber = possibleNumber.toInt()
+let convertedNumber = Int(possibleNumber)
 //coverted number is inferred to be of type "Int?", or "optional Int"
 
-/*  Because the toInt method might fail, it returns an optional Int, rather than an Int. An optional Int is written as Int?, not Int. The question mark indicates that the value it contains is optional, meaning that it might contain some Int valu, or it might contain no value at all. (It can't contain anything else, such as a Bool or String. it's either an Int or nothing at all). */
+/*  Because the initializer might fail, it returns an optional Int, rather than an Int. An optional Int is written as Int?, not Int. The question mark indicates that the value it contains is optional, meaning that it might contain some Int valu, or it might contain no value at all. (It can't contain anything else, such as a Bool or String. it's either an Int or nothing at all). */
 
 
 /*  nil
@@ -398,6 +455,10 @@ serverResponseCode = nil
 //  this also sets the initial value to nil:
 
 var surveyAnswer: String?
+
+print(surveyAnswer)
+
+
 
 /*  If statements and forced unwrapping
 ———————————————————————————————————————————————————
@@ -416,11 +477,26 @@ if convertedNumber != nil {
 You use optional binding to find out whether an optional contains a value, and if so, to make that value available as a temporary constant or variable. Optional binding can be used with if and while statements to check for a value inside an optional, and to extract that value into a constant or variable, as part of a single action.
 */
 
-if let actualNumber = possibleNumber.toInt() {
-  print("\'\(possibleNumber)\' has an integer value of \(actualNumber)")
+if let actualNumber = Int(possibleNumber) {
+    print("\"\(possibleNumber)\" has an integer value of \(actualNumber)", terminator: "")
 } else {
-  print("\'\(possibleNumber)\' could not be converted to an integer")
+  print("\"\(possibleNumber)\" could not be converted to an integer", terminator: "")
 }
+
+//  if the conversion is successful, the actualNumber constant becomes available for use within the first branch of the if statement. It has already been initialized with the value contained within the optional, and so there is no need to use the ! suffix to access its value. In this example, actualNumber is simply used to print the result of the conversion.
+
+//  You can use both constants and variables with optional binding. If you wanted to manipulate the value of actualNumber within the first branch of the if statement, you could write if var actualNumber instaed, and the value contained within the optional would be made available as a variable rather than a constant.
+
+//  You can include multiple optional bindings in a single if statement and use a where clause to check for a Boolean condition. If any of the values in the optional bindings are nil or the where clause evaluates to false, the whole optional binding is considered unsuccessful.
+
+if let firstNumber = Int("4"), secondNumber = Int("42") where firstNumber < secondNumber {
+    print("\(firstNumber) < \(secondNumber)", terminator: "")
+}
+
+
+//  NOTE: Constants and variables created with optional binding in an if statement are available only within the body of the if statement. In contrast, the constants and variables created with a guard statement are available in the lines of code that follow the guard statement, as described in Early Exit,
+
+
 
 /*  Implicitly unwrapped optionals
 —————————————————————————————————————————————————
