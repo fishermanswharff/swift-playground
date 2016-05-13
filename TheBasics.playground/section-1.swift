@@ -19,10 +19,11 @@ Optionals are an example of the fact that Swift is a type safe language. Swift h
 
 */
 
-
-
-/*  Constants and Variables  */
-/*———————————————————————————*/
+/* ————————————————————————————————————————————————————————————————
+ 
+                    Constants and Variables
+ 
+ ———————————————————————————————————————————————————————————————— */
 
 //constants and variables must be declared before they are used.
 
@@ -81,20 +82,27 @@ let languageName = "Swift"
 //languageName = "Swift++"
 //this is a compile-time error - languageName cannot be changed
 
-//  You can print the current value of a constant or variable with println function
+//  You can print the current value of a constant or variable with print function
 
-println(friendlyWelcome)
+print(friendlyWelcome)
 
 
-//  println is a global function that prints a value, followed by a line break, to an appropriate output. In Xcode, for example, println prints its output in Xcode's console pane. The println function prints any String value you pass to it.
+//  the print(_:separator:terminator:) function is a global function that prints one or more values ot an appropriate output. In Xcode for example, the print(_:separator:terminator:) function prints its output in Xcode's "console" panel. The separator and terminator parameter have default values, so you can omit them when you call this function. by default, the function terminates the line it prints by adding a line break. To print a value without a line break after it, pass an empty string as the terminator, for example:
 
-println("Hello World")
+print("Hello World", terminator: "")
 
 //  Swift uses string interpolation to include the name of a constant or variable as a placeholder in a longer string, and to prompt Swift to replace it with the current value of that constant or variable. Wrap the name in parentheses and escape it with a backslash before the opening parenthesis:
 
-println("The current value of friendlyWelcome is \(friendlyWelcome)")
+print("The current value of friendlyWelcome is \(friendlyWelcome)")
 
 //  NOTE: all options you can use with string interpolation are described in String Interpolation
+
+
+/* ————————————————————————————————————————————————————————————————
+
+                        Comments
+ 
+———————————————————————————————————————————————————————————————— */
 
 //  Use comments in Swift to include non-executable text in your code, as a note or reminder to yourself. Comments are ignored by the Swift compiler when your code is compiled.
 
@@ -123,7 +131,7 @@ comment
 //  Unlike many other languages, Swift does not require you to write a semicolon after each statement in your code, although you can do so if you wish
 //  Semicolons are required however if you want to write multiple separate statements on a single line:
 
-let cat = "🐱"; println(cat)
+let cat = "🐱"; print(cat)
 
 
 /*              Integers              */
@@ -295,9 +303,9 @@ let orangesAreOrange = true
 let turnipsAreDelicious = false
 
 if turnipsAreDelicious {
-  println("Mmm, tasty turnips!")
+  print("Mmm, tasty turnips!")
 } else {
-  println("Eww, turnips are horrible.")
+  print("Eww, turnips are horrible.")
 }
 
 //  conditional statements such as the if statement are covered in more detail in Control flow
@@ -316,7 +324,7 @@ if turnipsAreDelicious {
 
 let i = 1
 if i == 1 {
-  println("one is the lonliest number")
+  print("one is the lonliest number")
 }
 //  The result of the i == 1 comparison is type Bool
 
@@ -333,18 +341,18 @@ let http404Error = (404, "Not Found")
 //  You can decompose a tuple's contents into separate constants or variables, which you then access as usual:
 
 let (statusCode, statusMessage) = http404Error
-println("The status code is \(statusCode)")
-println("The status message is \(statusMessage)")
+print("The status code is \(statusCode)")
+print("The status message is \(statusMessage)")
 
 //   If you only need some of the tuple's values, ignore parts of the tuple with an underscore (_) when you decompose the tuple:
 
 let (justTheStatusCode,_) = http404Error
-println("The status code is \(justTheStatusCode)")
+print("The status code is \(justTheStatusCode)")
 
 //  Alternatively, access individual element values in a tuple using index numbers starting at zero:
 
-println("The status code is \(http404Error.0)")
-println("The status message is \(http404Error.1)")
+print("The status code is \(http404Error.0)")
+print("The status message is \(http404Error.1)")
 
 //  You can name the individual elements in a tuple when the tuple is defined
 
@@ -352,8 +360,8 @@ let http200Status = (statusCode: 200, description: "OK")
 
 //  if you name the elements in a tuple, you can use the element names to access the values of those elements
 
-println("Accessing tuple values by element names is easy, like so: \(http200Status.statusCode)")
-println("Status code 200 means: \(http200Status.description)")
+print("Accessing tuple values by element names is easy, like so: \(http200Status.statusCode)")
+print("Status code 200 means: \(http200Status.description)")
 
 //  Tuples are particularly useful as the return value of functions. A functions that tries to retrieve a web page might return the (Int, String) tuple type to describe the success or failure of the page retrieval. By returning a tuple with two distinct values, each of a different type, the function provides more useful information about its outcome than if it could only return a single value of a single type.
 
@@ -398,9 +406,9 @@ You can use an if statement to find out whether an optional contains a value by 
 
 if convertedNumber != nil {
   //  prints the line "convertedNumber contains some integer value: Optional(123)"
-  println("convertedNumber contains some integer value: \(convertedNumber)")
+  print("convertedNumber contains some integer value: \(convertedNumber)")
   //  once you're sure that the optional does contain a value, you can access its underlying value by adding an exclamation mark to the end of the optional's name. The exclamation mark effectively says, "I know that this optional contains a value, please use it." This is knows as forced unwrapping of the optional's value
-  println("convertedNumber contains some integer value: \(convertedNumber!)")
+  print("convertedNumber contains some integer value: \(convertedNumber!)")
 }
 
 /*  Optional Binding
@@ -409,9 +417,9 @@ You use optional binding to find out whether an optional contains a value, and i
 */
 
 if let actualNumber = possibleNumber.toInt() {
-  println("\'\(possibleNumber)\' has an integer value of \(actualNumber)")
+  print("\'\(possibleNumber)\' has an integer value of \(actualNumber)")
 } else {
-  println("\'\(possibleNumber)\' could not be converted to an integer")
+  print("\'\(possibleNumber)\' could not be converted to an integer")
 }
 
 /*  Implicitly unwrapped optionals
