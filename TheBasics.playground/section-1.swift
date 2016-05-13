@@ -89,7 +89,7 @@ print(friendlyWelcome)
 
 //  the print(_:separator:terminator:) function is a global function that prints one or more values ot an appropriate output. In Xcode for example, the print(_:separator:terminator:) function prints its output in Xcode's "console" panel. The separator and terminator parameter have default values, so you can omit them when you call this function. by default, the function terminates the line it prints by adding a line break. To print a value without a line break after it, pass an empty string as the terminator, for example:
 
-print("Hello World", terminator: "")
+print("Hello World", terminator: "\n\n")
 
 //  Swift uses string interpolation to include the name of a constant or variable as a placeholder in a longer string, and to prompt Swift to replace it with the current value of that constant or variable. Wrap the name in parentheses and escape it with a backslash before the opening parenthesis:
 
@@ -578,6 +578,7 @@ let age = -3
 
 
 
+let 🍕 = "pizza"
 
 
 
