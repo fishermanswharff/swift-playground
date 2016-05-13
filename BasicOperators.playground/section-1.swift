@@ -2,10 +2,14 @@
 
 import UIKit
 
-/*  BASIC OPERATORS
-================================================================================
 
-Terminology: operators are unary, binary, or ternary:
+
+/* ================================================================================
+                            BASIC OPERATORS
+================================================================================ */
+
+/*
+ Terminology: operators are unary, binary, or ternary:
 
 Unary operators operate on a single target (such as -a). Unary prefix operators appear immediately before their target (such as !b), and unary postfix operators appear immediately after their target (such as i++). 
 
@@ -14,20 +18,32 @@ Binary operators operate on two targets (such as 2 + 3) and are infix because th
 Ternary operators operate on three targets. Like C, Swift has only one ternary operator, the ternary conditional operator (a ? b : c).
 
 The values that operators affect are operands. In the expression 1 + 2, the + symbol is a binary operator and its two operands are the values 1 and 2.
+
 */
 
-//  assignment
-//————————————
+
+/* ————————————————————————————————————————————————————————
+ 
+                        assignment
+
+———————————————————————————————————————————————————————— */
 
 let b = 10
 var a = 5
 a = b
 
 // If the right side of the assignment is a tuple with multiple values, its elements can be decomposed into multiple constants or variables at once: 
+
 let (x,y) = (1,2)
 print(x,y, terminator: "")
-//  arithmetic
-//————————————
+
+
+
+/* ————————————————————————————————————————————————————————
+
+                        Arithmetic
+
+ ———————————————————————————————————————————————————————— */
 1 + 2
 5 - 3
 2 * 3
@@ -37,18 +53,28 @@ print(x,y, terminator: "")
 
 "hello, " + "world"
 
-//  remainder operator
-//———————————————————
-9 % 4
+/* ————————————————————————————————————————————————————————
+
+                        Modulo
+
+ ———————————————————————————————————————————————————————— */
+
+9 % 4 // => 1
 
 //  the modulo operator returns the remainder of the division, so 4 goes into 9 twice (4x2=8) with a remainder of 1, so 1 is returned from the above operation
 
 // Unlike the remainder operator in C and Objective-C, Swift’s remainder operator can also operate on floating-point numbers: 
 
-8 % 2.5
+8 % 2.5 // => .5
 
-//  increment and decrement operators
-//———————————————————————————————————
+
+
+
+/* ————————————————————————————————————————————————————————
+
+                  Compound Assignment
+
+ ———————————————————————————————————————————————————————— */
 
 var i = 0
 i += 1
@@ -58,30 +84,35 @@ i
 //  each time you call i += 1 the value of i is increased by 1
 i -= 1
 
-//  unary minus operator
-//——————————————————————
+
+/* ————————————————————————————————————————————————————————
+
+                  unary minus operator
+
+ ———————————————————————————————————————————————————————— */
+
 // the sign of a numeric value can be toggled using a prefixed '-', known as the unary minus operator
 let three = 3
 let minusThree = -three
 let plusThree = -minusThree
 
-//  unary plus operator
-//—————————————————————
+
+/* ————————————————————————————————————————————————————————
+
+                  unary plus operator
+
+ ———————————————————————————————————————————————————————— */
 //  the unary plus operator (+) simply returns the value it operates on, without any change:
 let minusSix = -6
 let alsoMinusSix = +minusSix // equals -6
 // Although the unary plus operator doesn’t actually do anything, you can use it to provide symmetry in your code for positive numbers when also using the unary minus operator for negative numbers.
 
 
-//  compound assignment operators
-//———————————————————————————————
-var f = 1
-f += 2
-//f now equals 3
+/* ————————————————————————————————————————————————————————
 
+                  Comparison Operators
 
-//  Comparison Operators
-//——————————————————————
+ ———————————————————————————————————————————————————————— */
 
 1 == 1
 2 != 1
@@ -92,15 +123,23 @@ f += 2
 
 let name = "world"
 if name == "world" {
-  print("hello world")
+  print("hello world", terminator: "")
 } else {
   print("I'm sorry \(name), but I don't recognize you.")
 }
 
 
-//  Ternary Conditional Operator
-//——————————————————————————————
+//  You can also compare tuples that have the same number of values, as long as each of the values in the tuple can be compared.
+(1, "zebra") < (2, "apple") // true because 1 is less than 2
+(3, "apple") < (3, "bird") // true because 3 equals 3, apple is less than bird
+(4, "dog") == (4, "dog") // they're the same, equal
 
+
+/* ————————————————————————————————————————————————————————
+
+              Ternary Conditional Operator
+
+ ———————————————————————————————————————————————————————— */
 //recipe: question ? answer1 : answer2
 
 let contentHeight = 40
@@ -138,15 +177,18 @@ userDefinedColorName = "green"
 colorNameToUse = userDefinedColorName ?? defaultColorName
 
 
-//  Range Operators
-//———————————————————————
+/* ————————————————————————————————————————————————————————
+
+                  Range Operators
+
+ ———————————————————————————————————————————————————————— */
 
 /*
 Swift includes two range operators, which are shortcuts for expressing a range of values.
 
 1.  Closed Range Operator:
 ————————————————————————————————
-The closed range operator (a...b) defines a range that runs from a to b, and includes the values of a and b. Teh value of a must not be greater than b.
+The closed range operator (a...b) defines a range that runs from a to b, and includes the values of a and b. The value of a must not be greater than b.
 
 The closed range operator is useful when iterating over a range in which you want all of the values to be used, such as with a for-in loop.
 */
@@ -171,12 +213,15 @@ for i in 0..<count {
 }
 
 /* 
-Note that the array contains four items, but 0..<count only counts as far as 3 (the index of the last item in teh array), because it is a half-open range.
+Note that the array contains four items, but 0..<count only counts as far as 3 (the index of the last item in the array), because it is a half-open range.
 */
 
 
-//  Logical Operators
-//————————————————————
+/* ————————————————————————————————————————————————————————
+
+                  Logical Operators
+
+ ———————————————————————————————————————————————————————— */
 
 /*
 Logical operators modify of combine the Boolean logic values true and false. Swift supports the three standard logical operators found in C-based languages.
@@ -195,7 +240,7 @@ The logical NOT operator is a prefix operator and appears immediately before the
 
 let allowedEntry = false
 if !allowedEntry {
-  print("ACCESS DENIED")
+  print("ACCESS DENIED", terminator: "")
 }
 
 /* 
@@ -236,9 +281,9 @@ if enteredDoorCode && passedRetinaScan {
 let hasDoorKey = false
 let knowsOverridePassword = true
 if hasDoorKey || knowsOverridePassword {
-  print("Welcome")
+  print("Welcome", terminator: "")
 } else {
-  print("ACCESS DENIED")
+  print("ACCESS DENIED", terminator: "")
 }
 
 
@@ -258,6 +303,7 @@ if enteredDoorCode && passedRetinaScan || hasDoorKey || knowsOverridePassword {
 
 //  Based on the values of enteredDoorCode, passedRetinaScan, and hasDoorKey, the first two mini-expressions are false. However, the emergency override password is known, so the overall compound expression still evaluates to true.
 
+//  NOTE: The Swift logical operators && and || are left-associative, meaning that compound expressions with multiple logical operators evaluate the leftmost subexpression first.
 
 //  Explicit Parentheses
 //————————————————————————
