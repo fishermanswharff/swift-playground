@@ -2,23 +2,37 @@
 
 import UIKit
 
-//  STRINGS AND CHARACTERS
+
+
+/* ========================================================================================================
+ 
+                                                STRINGS AND CHARACTERS
+ 
+ ======================================================================================================== */
+
 //—————————————————————————————————————————————————————————————————————————
 
 //  A string is an ordered collection of characters. 
 
 
 
-//  String literals
-//———————————————————
+/* ————————————————————————————————————————————————————————————————————————
+
+                              String literals
+ 
+ ———————————————————————————————————————————————————————————————————————— */
 
 let someString = "Some string literal value"
 
 //  You can include predefined String values within your code as string literals. A string literal is a fixed sequence of textual characters surrounded by a pair of double quotes ("")
 
 
-//  Initializing an empty string
-//——————————————————————————————
+
+/* ————————————————————————————————————————————————————————————————————————
+
+                      Initializing an empty string
+
+ ———————————————————————————————————————————————————————————————————————— */
 
 var emptyString = "" // empty string syntax
 var anotherEmptyString = String() // initializer syntax
@@ -26,11 +40,15 @@ var anotherEmptyString = String() // initializer syntax
 //  these two strings are both empty and are equivalent to each other
 
 if emptyString.isEmpty {
-  println("Nothing to see here")
+  print("Nothing to see here")
 }
 
-//  String mutability
-//————————————————————
+
+/* ————————————————————————————————————————————————————————————————————————
+
+                        String mutability
+
+ ———————————————————————————————————————————————————————————————————————— */
 
 //  You indicate whether a particular String can be modified (or mutated) by assigning it to a variable (in which case it can be modified) or to a constant (in which case it cannot be modified)
 
@@ -41,25 +59,46 @@ let constantString = "Highlander"
 // constantString += " and another Highlander"
 //  the above reports a compile time error because constants cannot be changed.
 
-//  Strings are value types
-//——————————————————————————
+
+
+/* ————————————————————————————————————————————————————————————————————————
+
+                      Strings are value types
+
+ ———————————————————————————————————————————————————————————————————————— */
+
+
 //  Swift's String type is a value type. If you create a new String value, that String value is copied when it is passed to a function or method, or when it is assigned to a constant or variable. In each case, a new copy of the existing string value is created, and the new copy is passed or assigned, not the original version.
 
-//  Working with characters
-//———————————————————————
-//  Swift's String type represents a collection of Character values in a specified order. You can access the individual Character values in a string by iterating over that string with a for-in loop
 
-for character in "Dog!🐶" {
-  println(character)
+/* ————————————————————————————————————————————————————————————————————————
+
+                        Working with characters
+
+ ———————————————————————————————————————————————————————————————————————— */
+//  Swift's String type represents a collection of Character values in a specified order. You can access the individual Character values in a string by iterating over that string's characters property with a for-in loop
+
+for character in "Dog!🐶".characters {
+  print(character)
 }
 
 //  alternatively, create a stand-alone Character constant or variable from a single-character string literal by providing a Character type annotation: 
 
 let yenSign: Character = "¥"
 
+//  STring values can be constructed by passing an array of character values as an argument to its initializer:
+let catCharacters: [Character] = ["C", "a", "t", "!", "🐱"]
+let catString = String(catCharacters)
+print(catString)
 
-//  Concatenating Strings and Characters
-//———————————————————————————————————————
+
+
+
+/* ————————————————————————————————————————————————————————————————————————
+
+                  Concatenating Strings and Characters
+
+ ———————————————————————————————————————————————————————————————————————— */
 
 let string1 = "hello"
 let string2 = " there"
@@ -81,13 +120,28 @@ welcome.append(exclamationMark)
 
 //  You can't append a String or Character to an existing Character variable because a Character value must contain a single character only
 
+
+
+/* ————————————————————————————————————————————————————————————————————————
+
+ section name
+
+ ———————————————————————————————————————————————————————————————————————— */
+
 //  String interpolation
 //——————————————————————
 
 //  String interpolation is a way to construct a new String value from a mix of constants, variables, and expressions by including their values inside a string literal. You do this inside a string with the backslash and parentheses: "\()"
 
 let multiplier = 3
-//let message = "\(multiplier) times 2.5 is \(Double(multiplier) * 2.5)")
+let message = "\(multiplier) times 2.5 is \(Double(multiplier) * 2.5)"
+
+
+/* ————————————————————————————————————————————————————————————————————————
+
+ section name
+
+ ———————————————————————————————————————————————————————————————————————— */
 
 //  Unicode
 //—————————————
@@ -113,39 +167,38 @@ let sparklingHeart = "\u{1F496}"
 
 
 let unusualMenagerie = "Koala 🐨, Snail 🐌, Penguin 🐧, Dromedary 🐪"
-println("unusualMenagerie has \(countElements(unusualMenagerie)) characters")
+print("unusualMenagerie has \(unusualMenagerie.characters.count) characters")
 
 var word = "cafe"
-println("the number of characters in \(word) is \(countElements(word))")
+print("the number of characters in \(word) is \(word.characters.count)")
 
 word += "\u{301}"
 
-println("the number of characters in \(word) is \(countElements(word))")
+print("the number of characters in \(word) is \(word.characters.count)")
 
 
-//  Comparing Strings
-//—————————————————————
 
+/* ————————————————————————————————————————————————————————————————————————
+
+                                  Comparing Strings
+
+ ———————————————————————————————————————————————————————————————————————— */
 //  String and character equality is checked with the "equal to" operator (==) and the "not equal to" operator (!=), as described in Comparison Operators:
 
 let quotation = "We're a lot alike, you and I"
 let sameQuotation = "We're a lot alike, you and I"
 
 if quotation == sameQuotation {
-  println("These two strings are considered equal")
+  print("These two strings are considered equal")
 }
 
 let eAcuteQuestion = "Voulez-vous un caf\u{E9}"
-
 let combinedEAcuteQuestion = "Voulez-vouz un caf\u{65}\u{301}"
-
-
 let latinCapitalLetterA: Character = "\u{41}"
-
 let cyrillicCaptialLetterA: Character = "\u{0410}"
 
 if latinCapitalLetterA != cyrillicCaptialLetterA {
-  println("These two characters are not equivalent")
+  print("These two characters are not equivalent")
 }
 
 let romeoAndJuliet = [
@@ -167,11 +220,11 @@ let romeoAndJuliet = [
 var act1SceneCount = 0
 for scene in romeoAndJuliet {
   if scene.hasPrefix("Act 1 ") {
-    ++act1SceneCount
+    act1SceneCount += 1
   }
 }
 
-println("There are \(act1SceneCount) scenes in Act 1")
+print("There are \(act1SceneCount) scenes in Act 1")
 
 //  use the hasSuffix method to count the number of scenes that take place in or around Capulet's mansion and Friar Lawrence's cell:
 
@@ -179,13 +232,13 @@ var mansionCount = 0
 var cellCount = 0
 for scene in romeoAndJuliet {
   if scene.hasSuffix("Capulet's mansion") {
-    ++mansionCount
+    mansionCount += 1
   } else if scene.hasSuffix("Friar Lawrence's cell"){
-    ++cellCount
+    cellCount += 1
   }
 }
 
-println("\(mansionCount) mansion scenes; \(cellCount) cell scenes")
+print("\(mansionCount) mansion scenes; \(cellCount) cell scenes")
 
 
 
