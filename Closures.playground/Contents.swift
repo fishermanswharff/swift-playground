@@ -100,6 +100,111 @@ reversed = names.sort { $0 > $1 }
 
 print(reversed)
 
+//  here's how you can use the map(_:) method with a trailing closure to convert an array of Int values into an array of String values:
+
+let digitNames = [
+  0: "Zero",
+  1: "One",
+  2: "Two",
+  3: "Three",
+  4: "Four",
+  5: "Five",
+  6: "Six",
+  7: "Seven",
+  8: "Eight",
+  9: "Nine"
+]
+
+let numbers = [16, 58, 510]
+
+//  map calls the closure once for every item in the array
+let strings = numbers.map {
+  //  the type can be inferred from the values in the array to be mapped
+  //  also specifies a return type: String
+  (number) -> String in
+  var number = number
+  // build an output string every iteration
+  var output = ""
+  while number > 0 {
+    // we use the exclamation mark because dictionary subscripts return an optional value to indicate that the dictionary lookup can fail if the key does not exist. In this example it is guaranteed this will always be a valid subscript key for the digitNames dictionary, and so an exclamation mark is used to force-unwrap the String value stored in the subscript's optional return value. The next lines gives values of 6 for 16, 8 for 58, and 0 for 510. We're essentially building the string in reverse order of numbers.
+    output = digitNames[number % 10]! + output
+    // then divide the number by 10. because it is an integer it is rounded down during division so 16 becomes 1, 58 becomes 5, and 510 becomes 51.
+    number /= 10
+  }
+
+  return output
+}
+
+print(strings)
+
+/* ————————————————————————————————————————————————————————
+
+ Capturing Values
+
+ ———————————————————————————————————————————————————————— */
+//  constants and variables defined in the surrounding context of closures are available to the closures.
+
+
+// the return value is () -> Int, which means this function returns a function, rather than a simple value.
+func makeIncrementer(forIncrement amount: Int) -> () -> Int {
+  var runningTotal = 0
+  func incrementer() -> Int {
+    runningTotal += amount
+    return runningTotal
+  }
+
+  return incrementer
+}
+
+// assign a variable as a reference
+let incrementByTen = makeIncrementer(forIncrement: 10)
+
+// you can then call it
+print(incrementByTen())
+print(incrementByTen())
+print(incrementByTen())
+
+let incrementBySeven = makeIncrementer(forIncrement: 7)
+print(incrementBySeven())
+print(incrementBySeven())
+print(incrementBySeven())
+
+/* ————————————————————————————————————————————————————————
+
+ Closures are reference types
+
+ ———————————————————————————————————————————————————————— */
+// whenever you assign a function or a closure to a constant or variable you are actually setting that constant or variable to be a reference to the function or closure.
+// This also means that if you assign a closure to two different constants or variables, both of those constants or variables will refer to the same closure:
+
+let alsoIncrementByTen = incrementByTen
+print(alsoIncrementByTen())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
